@@ -19,9 +19,9 @@ public class AlfredQuotes {
     public String respondBeforeAlexis(String conversation) {
         int a = conversation.indexOf("Alexis");
         int b = conversation.indexOf("Alfred");
-        if (a >= 1) {
+        if (a > -1) {
             return "Right away, sir. She certainly isn't sophisticated enough for that.";
-        } else if (b >= 1) {
+        } else if (b > -1) {
             return "At your service. As you wish, naturally.";
         } else {
             return "Right. And with that I shall retire.";
