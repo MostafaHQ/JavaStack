@@ -23,9 +23,9 @@ public class AlfredQuotes {
             return "Right away, sir. She certainly isn't sophisticated enough for that.";
         } else if (b > -1) {
             return "At your service. As you wish, naturally.";
-        } else {
-            return "Right. And with that I shall retire.";
         }
+            return "Right. And with that I shall retire.";
+        
     }
 
     // NINJA BONUS
