@@ -18,14 +18,20 @@
       <th scope="col">Expenses</th>
       <th scope="col">Vendor</th>
       <th scope="col">Amount</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
   <c:forEach var="expense" items="${expenses}">
     <tr>
-      <td><c:out value="${expense.name}"></c:out></td>
+      <td><a href="${expense.id}"><c:out value="${expense.name}"></c:out></a></td>
       <td><c:out value="${expense.vendor}"></c:out></td>
       <td><c:out value="${expense.amount}"></c:out></td>
+      <td class="d-flex justify-content-around"><a href="/edit/${expense.id}">edit</a>|
+      <form:form action="/${expense.id}" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form:form></td>
     </tr>
     </c:forEach>
   </tbody>
