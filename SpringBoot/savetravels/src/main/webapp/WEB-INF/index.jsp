@@ -8,7 +8,7 @@
 <head>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Save Travels</title>
 </head>
 <body>
 <h1>Save Travels</h1>
@@ -52,7 +52,7 @@
     <form:errors path="description"/>
     <form:textarea path="description" class="form-control"  placeholder="Amount"/>
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form:form>
 </body>
 </html>

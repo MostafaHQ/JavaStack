@@ -10,7 +10,7 @@ import com.mostafa.savetravels.repositories.ExpenseRepository;
 @Service
 public class ExpenseService {
 	
-	private ExpenseRepository expenseRepository;
+	private final ExpenseRepository expenseRepository;
 	
 
 	public ExpenseService(ExpenseRepository expenseRepository) {
