@@ -25,6 +25,7 @@
       <th scope="row"><c:out value="${book.id}"></c:out></th>
       <td><c:out value="${book.title}"></c:out></td>
       <td><c:out value="${book.language}"></c:out></td>
+      <td><c:out value="${book.numberOfPages}"></c:out></td>
     </tr>
     </c:forEach>
   </tbody>
