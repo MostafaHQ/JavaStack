@@ -38,8 +38,9 @@ public class ExpenseController {
 	}
 
 	@PostMapping("/expenses")
-	public String create(@Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
+	public String create(@Valid @ModelAttribute("expense") Expense expense, BindingResult result, Model model) {
 		if(result.hasErrors()) {
+			model.addAttribute("expenses",expenseService.allExpense());
 			return "index.jsp";
 		}else {
 			expenseService.createExpense(expense);
@@ -58,7 +59,7 @@ public class ExpenseController {
 	public String update(@PathVariable("id") Long id, Model model, @Valid @ModelAttribute("expense") Expense expense,BindingResult result) {
 		
 		if (result.hasErrors()) {
-			return "redirect:/edit/{id}";
+			return "edit.jsp";
 		}else {
 			expenseService.updateExpense(expense);
 			return "redirect:/expenses";
