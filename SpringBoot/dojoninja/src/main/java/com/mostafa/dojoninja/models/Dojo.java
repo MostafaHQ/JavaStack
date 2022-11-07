@@ -51,6 +51,30 @@ public class Dojo {
 		return name;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Ninja> getNinjas() {
+		return ninjas;
+	}
+
+	public void setNinjas(List<Ninja> ninjas) {
+		this.ninjas = ninjas;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

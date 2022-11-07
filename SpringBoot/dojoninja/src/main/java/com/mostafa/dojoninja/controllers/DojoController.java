@@ -1,6 +1,10 @@
 package com.mostafa.dojoninja.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +32,12 @@ public class DojoController {
 	}
 	
 	@PostMapping("/dojos/new")
-	public String createDojo(@valid @ModelAttribute("dojo") Dojo dojo)
-	
-}
+	public String createDojo(@Valid @ModelAttribute("dojo") Dojo dojo, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "index.jsp";
+		}else {
+			dojoService.createDojo(dojo);
+			return "redirect:/dojos/new";
+		}
+	}
+	}
