@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mostafa.dojoninja.models.Dojo;
@@ -39,9 +40,4 @@ public class NinjaController {
 				return "redirect:/ninjas/new";
 			}
 		}
-	@GetMapping("/dojos/{id}")
-	public String show(@ModelAttribute("ninja") Ninja ninja, Model model) {
-		model.addAttribute("ninjas", ninjaService.allNinja());
-		return "show.jsp";
-	}
 	}

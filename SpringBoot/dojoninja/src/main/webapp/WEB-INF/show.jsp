@@ -11,7 +11,7 @@
 <title>Dojo</title>
 </head>
 <body>
-<h1><c:out value="${ninja.dojo.name}"></c:out> Ninjas</h1>
+<h1><c:out value="${dojo.name}"/> Ninjas</h1>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-  <c:forEach var="ninja" items="${ninjas}">
+  <c:forEach var="ninja" items="${dojo.ninjas}">
     <tr>
       <td><c:out value="${ninja.firstName}"></c:out></td>
       <td><c:out value="${ninja.lastName}"></c:out></td>
