@@ -2,12 +2,17 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="antlr.collections.List"/>
     <fullyQualifiedTypeName name="com.mostafa.booksapi.models.Book"/>
-    <fullyQualifiedTypeName name="javax.persistence.Id"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="javax.persistence.Table"/>
+    <fullyQualifiedTypeName name="javax.persistence.Id"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.mostafa.productsandcategories.repositories.CategoryProductRepository"/>
+    <fullyQualifiedTypeName name="com.mostafa.productsandcategories.models.CategoryProduct"/>
+    <fullyQualifiedTypeName name="com.mostafa.productsandcategories.service.ProductService"/>
     <fullyQualifiedTypeName name="com.mostafa.productsandcategories.models.Category"/>
+    <fullyQualifiedTypeName name="com.mostafa.productsandcategories.repositories.CategoryRepository"/>
+    <fullyQualifiedTypeName name="com.mostafa.productsandcategories.service.CategoryService"/>
 </qualifiedTypeNameHistroy>

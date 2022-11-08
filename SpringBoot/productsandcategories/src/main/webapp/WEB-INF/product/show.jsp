@@ -19,5 +19,14 @@
       <li><c:out value="${product.category.name}"></c:out></li>
       </c:forEach>
 </ul>
+<h2>Add Category</h2>
+<form:form action="/products/${id}" method="post" modelAttribute="categoryProduct">  
+  <form:select class="form-control" path="category">
+        <c:forEach var="category" items="${categories}">
+        <form:option value="${category.id}"><c:out value="${category.name}"></c:out></form:option>
+    	</c:forEach>
+        </form:select>
+        <button type="submit" class="btn btn-primary mt-3">Add</button>
+</form:form>
 </body>
 </html>

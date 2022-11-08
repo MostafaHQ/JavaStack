@@ -10,17 +10,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.mostafa.productsandcategories.models.CategoryProduct;
 import com.mostafa.productsandcategories.models.Product;
+import com.mostafa.productsandcategories.service.CategoryProductService;
+import com.mostafa.productsandcategories.service.CategoryService;
 import com.mostafa.productsandcategories.service.ProductService;
 
 @Controller
 public class ProductController {
 	
 	private final ProductService productService;
+	private final CategoryService categoryService;
+	private final CategoryProductService categoryProductService;
 	
 
-	public ProductController(ProductService productService) {
+	public ProductController(ProductService productService, CategoryService categoryService,CategoryProductService categoryProductService) {
 		this.productService = productService;
+		this.categoryService = categoryService;
+		this.categoryProductService = categoryProductService;
 	}
 	
 	
@@ -40,9 +47,19 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/{id}")
-	public String show(@PathVariable("id") Long id , Model model) {
-		model.addAttribute("product", productService.findProduct(id));
+	public String show(@ModelAttribute("categoryProduct")CategoryProduct categoryProduct, @PathVariable("id") Long id , Model model) {
+		Product product = productService.findProduct(id);
+		model.addAttribute("product", product);
+		model.addAttribute("categories",categoryService.categoriesNotOfProduct(product));
 		return "/product/show.jsp";
 	}
+	
+	@PostMapping("/products/{id}")
+	public String addCategoryProduct(@ModelAttribute("categoryProduct")CategoryProduct categoryProduct) {
+		categoryProductService.create(categoryProduct);
+		return ("redirect:/products/{id}");
+	}
+	
+	
 	
 }
