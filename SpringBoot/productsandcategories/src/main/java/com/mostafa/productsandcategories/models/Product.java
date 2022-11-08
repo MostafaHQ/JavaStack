@@ -2,7 +2,6 @@ package com.mostafa.productsandcategories.models;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Locale.Category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -30,7 +30,7 @@ public class Product {
 	private Long id;
 	
 	@NotNull
-	@Size(min = 5, max = 200, message = "Must be at least 5 charcters")
+	@Size(min = 2, max = 200, message = "Must be at least 2 charcters")
 	private String name;
 	
 	@NotNull
@@ -38,7 +38,7 @@ public class Product {
 	private String description;
 	
 	@NotNull
-	@Size(min = 5, max = 200, message = "Must be at least 5 charcters")
+	@Min(value = 1, message = "Must be more than 0 ")
 	private double price;
 	
 	@Column(updatable = false)
@@ -54,7 +54,7 @@ public class Product {
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
 	
-	private List<Category> Categories;
+	private List<Category> categories;
 
 	public Product() {
 	}
@@ -92,11 +92,11 @@ public class Product {
 	}
 
 	public List<Category> getCategories() {
-		return Categories;
+		return categories;
 	}
 
 	public void setCategories(List<Category> categories) {
-		Categories = categories;
+		this.categories = categories;
 	}	
 	
 	@PrePersist
