@@ -14,6 +14,7 @@
 <h1>Home Page</h1>
 <a href="/products/new">New Product</a>
 <a href="/categories/new">New Category</a>
+<div class="container mt-3">
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -34,5 +35,6 @@
     </tr>
   </tbody>
 </table>
+</div>
 </body>
 </html>
