@@ -35,7 +35,13 @@ public class CategoryProduct {
         
     }
     
-    public Long getId() {
+    
+    public CategoryProduct(Category category) {
+		this.category = category;
+	}
+
+
+	public Long getId() {
 		return id;
 	}
 

@@ -55,7 +55,8 @@ public class ProductController {
 	}
 	
 	@PostMapping("/products/{id}")
-	public String addCategoryProduct(@ModelAttribute("categoryProduct")CategoryProduct categoryProduct) {
+	public String addCategoryProduct(@ModelAttribute("categoryProduct")CategoryProduct categoryProduct, @PathVariable("id") Long id) {
+		System.out.println("**************************"+categoryProduct.getCategory().getName());
 		categoryProductService.create(categoryProduct);
 		return ("redirect:/products/{id}");
 	}
