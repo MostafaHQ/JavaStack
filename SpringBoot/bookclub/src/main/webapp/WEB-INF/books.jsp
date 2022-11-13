@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Success</title>
+	<title>Books</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="test.js"></script>
@@ -18,12 +18,12 @@
 <body class="m-3">
 <div class="container d-flex justify-content-between">
 <div>
-<h1>Welcome, <c:out value="${currentUser.userName}" ></c:out></h1>
+<h1>Welcome, <c:out value="${currentUser.userName}"></c:out></h1>
 <h6>Books from everyone's shelves</h6>
 </div>
 <div>
 <a href="/logout" style="text-decoration: none;">Logout</a><br>
-<a href="">+ Add a book to my shelf!</a>
+<a href="/books/new">+ Add a book to my shelf!</a>
 </div>
 </div>
 <div class="container mt-3">
@@ -40,8 +40,9 @@
   <c:forEach var="book" items="${books}">
     <tr>
     <td><c:out value="${book.id}"></c:out></td>
-      <td><a href="${book.id}"><c:out value="${book.name}"></c:out></a></td>
+      <td><a href="/books/${book.id}"><c:out value="${book.title}"></c:out></a></td>
       <td><c:out value="${book.author}"></c:out></td>
+      <td></td>
     </tr>
     </c:forEach>
   </tbody>

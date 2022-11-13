@@ -42,6 +42,7 @@ public class UserController {
 			 return "index.jsp";
 		 }else {
 			 session.setAttribute("userId", registeredUser.getId());
+			 session.setAttribute("currentUser", registeredUser);
 			 return "redirect:/books";
 		 }
 	 }
@@ -53,12 +54,14 @@ public class UserController {
 			 model.addAttribute("newUser", new User());
 			 return "index.jsp";
 		 }else {
-			 session.setAttribute("userId", user.getId());
+			 session.setAttribute("currentUser", user);
+			 User myUser = (User)session.getAttribute("currentUser");
+			 System.out.println(myUser);
 			 return "redirect:/books";
 		 }
 	 }
 	
-	@GetMapping("/success")
+	@GetMapping("/login")
 	public String success(Model model, HttpSession session) {
 		if (session.getAttribute("userId")!=null) {
 			Long userId = (Long) session.getAttribute("userId");
