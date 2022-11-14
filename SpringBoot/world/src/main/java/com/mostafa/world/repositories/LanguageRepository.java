@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.mostafa.world.models.Language;
-
+@Repository
 public interface LanguageRepository extends CrudRepository<Language,Long>{
 
 	@Query(value="SELECT * from languages  where language ='Slovene' Order by percentage desc", nativeQuery=true)

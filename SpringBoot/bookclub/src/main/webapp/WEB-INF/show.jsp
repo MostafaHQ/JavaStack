@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Books</title>
+	<title>Show Book</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="test.js"></script>
@@ -20,10 +20,27 @@
 <h1>${book.title}</h1>
 <a href="/books">back to the shelves</a>
 </div>
-<div class="container mt-15">
-<h6>${currentUser.userName} read ${book.title}</h6>
-<p>Here are ${currentUser.userName}'s thoughts:</p>
-<p>${book.thoughts}</p>
+<div>
+<c:choose>
+<c:when test="${book.user.id == userId}">
+<h4>You read <span style="color:purple">
+    ${book.title}</span> by <span style="color:green">${book.author}</span></h4> 
+    <h4>Here are your thoughts:</h4>
+    <p>${book.thoughts}</p>
+    
+   	<div class="d-flex edit_delete">
+    <a class="btn btn-primary" href="/books/${book.id}/edit">Edit</a>
+     
+    <a class="btn btn-danger" href="/delete/${book.id}">Delete</a>
+    </div>
+</c:when>
+<c:otherwise>
+ <h4><span style="color:red">${book.user.userName}</span> read <span style="color:purple">
+    ${book.title}</span> by <span style="color:green">${book.author}</span></h4> 
+    <h4>Here are ${book.user.userName}'s thoughts:</h4>
+    <p>${book.thoughts}</p>
+    </c:otherwise>
+</c:choose>
 </div>
 </body>
 </html>

@@ -81,6 +81,16 @@ public class Book {
 	public void setThoughts(String thoughts) {
 		this.thoughts = thoughts;
 	}
+	
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Date getCreatedAt() {
 		return createdAt;

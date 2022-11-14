@@ -1,7 +1,5 @@
 package com.mostafa.bookclub.controllers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.mostafa.bookclub.models.Book;
-import com.mostafa.bookclub.models.User;
 import com.mostafa.bookclub.services.BookService;
 import com.mostafa.bookclub.services.UserService;
 
@@ -30,16 +28,23 @@ public class BookController {
 	}
 	
 	@GetMapping("/books")
-	public String index(@ModelAttribute("book") Book book, Model model, HttpSession session) {
+	public String index(Model model, HttpSession session) {
+		if (session.getAttribute("userId") == null) {
+			return"redirect:/";
+		}
+		Long userId = (Long) session.getAttribute("userId");
+		model.addAttribute("currentUser", userService.findUserById(userId));
 		model.addAttribute("books", bookService.allBooks());
 		return "books.jsp";
 	}
+
 	
 	@GetMapping("/books/new")
 	public String creat(@ModelAttribute("book") Book book, HttpSession session, Model model) {
-		Long userId = (Long) session.getAttribute("userId");
-		User currentUser = userService.findUserById(userId);
-		model.addAttribute("currentUser", currentUser);	
+		
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/";
+		}
 		return "new.jsp";
 	}
 	
@@ -55,10 +60,44 @@ public class BookController {
 	
 	@GetMapping("/books/{id}")
 	public String show(@PathVariable("id") Long id, Model model, HttpSession session) {
+		if(session.getAttribute("userId") == null ) {
+			return "redirect:/";
+		}
 		model.addAttribute("book", bookService.findBook(id));
 		return "show.jsp";
 	}
+
+	@GetMapping("/books/{id}/edit")
+	public String edit(@PathVariable("id") Long id, Model model,HttpSession session) {
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/";
+		}
+		model.addAttribute("book", bookService.findBook(id));
+		return "edit.jsp";	
+	}
 	
+	@PutMapping("/books/{id}/edit")
+	public String update(@Valid @ModelAttribute("book") Book book, BindingResult result, @PathVariable("id") Long id) {
+		if (result.hasErrors()) {
+			return "new.jsp";
+		}else {
+			bookService.updateBook(book);
+			return "redirect:/books/"+id;
+		}
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id")Long id, HttpSession session) {
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/";
+    	}
+    	Book book = bookService.findBook(id);
+    	if(session.getAttribute("userId") == book.getUser().getId()) {
+    	bookService.deleteBook(id);
+    	}
+    	return "redirect:/books";
+
+	}
 }
 
 

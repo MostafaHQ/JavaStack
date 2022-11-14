@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Repository;
 
 import com.mostafa.world.models.Country;
-
+@Repository
 public interface CountryRepository extends CrudRepository<Country, Long> {
 
 	//	Display total number of cities for each country

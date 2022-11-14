@@ -10,17 +10,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Books</title>
+	<title>Edit</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="test.js"></script>
 </head>
 <body class="m-3">
 <div class="container d-flex justify-content-between">
-<h1>Add a Book to Your Shelf!</h1>
+<h1>Change your Entry</h1>
 <a href="/books">back to the shelves</a>
 </div>
-<form:form action="/books/new" method="post" modelAttribute="book">
+<form:form action="/books/${book.id}/edit" method="put" modelAttribute="book">
 <div class="form-group">
     <form:label path="title">Title:</form:label>
     <form:errors path="title" style="color:red" />
