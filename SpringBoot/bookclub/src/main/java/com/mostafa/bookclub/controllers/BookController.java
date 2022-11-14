@@ -96,7 +96,12 @@ public class BookController {
     	bookService.deleteBook(id);
     	}
     	return "redirect:/books";
-
+	}
+	
+	@GetMapping("/bookmarket")
+	public String market(Model model, HttpSession session) {
+		model.addAttribute("book", bookService.allBooks());
+		return "bookmarket.jsp";
 	}
 }
 

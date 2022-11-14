@@ -20,6 +20,7 @@
 <h1>Change your Entry</h1>
 <a href="/books">back to the shelves</a>
 </div>
+<div class="container">
 <form:form action="/books/${book.id}/edit" method="put" modelAttribute="book">
 <div class="form-group">
     <form:label path="title">Title:</form:label>
@@ -40,5 +41,6 @@
   
   <button type="submit" class="btn btn-primary mt-3">Submit</button>
   </form:form>
+  </div>
 </body>
 </html>

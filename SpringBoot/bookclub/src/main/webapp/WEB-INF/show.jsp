@@ -20,7 +20,7 @@
 <h1>${book.title}</h1>
 <a href="/books">back to the shelves</a>
 </div>
-<div>
+<div class="container">
 <c:choose>
 <c:when test="${book.user.id == userId}">
 <h4>You read <span style="color:purple">
