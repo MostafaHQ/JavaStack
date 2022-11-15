@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mostafa.bookclub.models.Book;
 import com.mostafa.bookclub.services.BookService;
@@ -100,9 +101,40 @@ public class BookController {
 	
 	@GetMapping("/bookmarket")
 	public String market(Model model, HttpSession session) {
-		model.addAttribute("book", bookService.allBooks());
+		if (session.getAttribute("userId") == null) {
+			return"redirect:/";
+		}
+		Long userId = (Long) session.getAttribute("userId");
+		model.addAttribute("currentUser", userService.findUserById(userId));
+		model.addAttribute("book",bookService.unborrowedBooks(userService.findUserById(userId)));
+		model.addAttribute("myBooks", bookService.borrowedBooks(userService.findUserById(userId)));
 		return "bookmarket.jsp";
 	}
+	
+	@RequestMapping("/bookmarket/{bookID}")
+	public String borrowBook(@PathVariable("bookID") Long bookID, HttpSession session) {
+	 
+		Long userId = (Long) session.getAttribute("userId");
+		if(userId == null) {
+			return "redirect:/logout";
+		}
+		bookService.addBorrower(bookService.findBook(bookID), userService.findUserById(userId));
+		 
+		return "redirect:/bookmarket";
+	}
+	
+	@RequestMapping("/bookmarket/return/{bookID}")
+	public String returnBook(@PathVariable("bookID") Long bookID, HttpSession session) {
+	 
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		}
+		bookService.removeBorrower(bookService.findBook(bookID));
+		 
+		return "redirect:/bookmarket";
+	}
+	
+	
 }
 
 

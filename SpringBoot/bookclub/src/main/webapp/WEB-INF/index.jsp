@@ -16,8 +16,10 @@
 	<script type="text/javascript" src="test.js"></script>
 </head>
 <body>
+<div class="container">
 <h1>Welcome!</h1>
 <h3>Join our growing community</h3>
+</div>
 <div class="d-flex justify-content-around">
 <div>
 <h2>Register</h2>

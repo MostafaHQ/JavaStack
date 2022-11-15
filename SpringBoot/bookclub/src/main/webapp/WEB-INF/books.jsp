@@ -23,7 +23,8 @@
 </div>
 <div>
 <a href="/logout" style="text-decoration: none;">Logout</a><br>
-<a href="/books/new">+ Add a book to my shelf!</a>
+<a href="/books/new">+ Add a book to my shelf!</a><br>
+<a href="/bookmarket">Go to Bookmarket</a>
 </div>
 </div>
 <div class="container mt-3">
